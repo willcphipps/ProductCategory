@@ -1,0 +1,46 @@
+@model Category
+<div class="m-3 jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">@ViewBag.Categories.CatName</h1>
+        <hr class="my-2">
+        <p class="lead">
+            <a class="float-left btn btn-primary btn-md" href="/Category" role="button">Back</a>
+        </p>
+    </div>
+</div>
+    
+    <div class="m-2 row justify-content-between">
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header">Products:</div>
+                <ul class="list-group list-group-flush">
+                    @foreach( var c in Model.CategorySelections)
+                    {
+                        <li class="list-group-item" >@c.ColProd.Name
+                            <a class="float-right text-dark" href="/removeC/collection/@c.ColId"> &times</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+         <div class="col-4">
+                <div class="card">
+                    <div class="card-header">Add Product:</div>
+                    <div class="card-body">
+                        <form class="form-inline" action="/AddCatCol/@Model.CatId" method="post">
+                            <select class="form-control col mr-sm-2" name="prodid">
+                                
+                                 @foreach(var n in ViewBag.NotinCat){
+                                    {
+                                        <option value="@n.ProdId">@n.Name</option>
+                                    }
+                                }
+                            </select>
+                            <br>
+                            </br>
+                            <input type="submit"  value="Add Product" class="btn btn-md btn-success">
+                        </form>
+                    </div>
+                    </div>
+            </div>
+        </div>

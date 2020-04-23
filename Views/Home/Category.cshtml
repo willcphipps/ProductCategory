@@ -1,0 +1,34 @@
+
+@model Category
+<div class="m-3 jumbotron jumbotron-fluid">
+    <div class="container">
+        <h3 class="display-4 text-center"><a href="/">Products</a>  |  Categories</h3>
+        <p class="lead">Jumbo helper text</p>
+        <hr class="my-2">
+        <div class="d-flex flex-row justify-content-between">
+            <form asp-action="AddCategory" asp-controller="Home" method="post">
+                <div class="form-group">
+                    <span asp-validation-for="CatName"></span>
+                    <label asp-for="CatName"></label>
+                    <input asp-for="CatName">
+                <input type="submit" value="Add Category" class="btn btn-outline-secondary">
+            </form>
+            </div>            
+            <div class="float-right">
+                <table class="table">
+                    <thead> 
+                        <tr>
+                            <th>Existing Categories</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var cat in ViewBag.Categories){
+                        <tr>
+                            <td scope="row"><a href="Category/@cat.CatId">@cat.CatName</a><a class="float-right text-danger" href="category/destroy/@cat.CatId"> &times</a></td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+    </div>
+</div>
